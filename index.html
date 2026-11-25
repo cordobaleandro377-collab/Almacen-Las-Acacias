@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Almacén Las Acacias: productos de almacén, bebidas y limpieza.">
+  <title>Almacén Las Acacias</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="encabezado">
+    <a class="marca" href="#" aria-label="Almacén Las Acacias, inicio">
+      <span class="marca-icono">🌿</span>
+      <span><strong>Almacén</strong><small>LAS ACACIAS</small></span>
+    </a>
+    <nav class="navegacion" aria-label="Navegación principal">
+      <a href="#catalogo">Productos</a>
+      <a href="#nosotros">Nosotros</a>
+    </nav>
+    <button id="btn-carrito" class="boton-carrito" type="button" aria-label="Abrir carrito">
+      🛒 <span>Mi carrito</span> <span id="contador-carrito" class="contador">0</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-contenido">
+        <span class="etiqueta">TU ALMACÉN DE CONFIANZA</span>
+        <h1>Lo que necesitás,<br><em>cerca de casa.</em></h1>
+        <p>Encontrá productos para todos los días, con la atención cálida de siempre.</p>
+        <a class="boton-principal" href="#catalogo">Ver productos <span>→</span></a>
+      </div>
+      <div class="hero-ilustracion" aria-hidden="true">
+        <div class="circulo-hero"></div>
+        <div class="bolsa">🛍️</div>
+        <span class="flotante flotante-uno">🥑</span>
+        <span class="flotante flotante-dos">🍞</span>
+        <span class="flotante flotante-tres">🍊</span>
+      </div>
+    </section>
+
+    <section id="catalogo" class="seccion catalogo">
+      <div class="titulo-seccion">
+        <div><span class="sobretitulo">NUESTRO CATÁLOGO</span><h2>Productos para vos</h2></div>
+        <p>Elegí tus favoritos y armá tu pedido.</p>
+      </div>
+      <div class="herramientas">
+        <label class="buscador"><span>⌕</span><input id="buscador" type="search" placeholder="Buscar un producto..." aria-label="Buscar productos"></label>
+        <div id="filtros" class="filtros" aria-label="Filtrar por categoría">
+          <button class="chip activo" type="button" data-categoria="todos">Todos</button>
+          <button class="chip" type="button" data-categoria="Almacén">Almacén</button>
+          <button class="chip" type="button" data-categoria="Bebidas">Bebidas</button>
+          <button class="chip" type="button" data-categoria="Limpieza">Limpieza</button>
+        </div>
+      </div>
+      <p id="mensaje-resultados" class="mensaje-resultados" aria-live="polite"></p>
+      <div id="productos" class="grilla-productos"></div>
+      <p id="sin-resultados" class="sin-resultados oculto">No encontramos productos con esa búsqueda.</p>
+    </section>
+
+    <section id="nosotros" class="franja-info">
+      <div><span class="sobretitulo">ALMACÉN LAS ACACIAS</span><h2>La compra de todos los días, más simple.</h2></div>
+      <p>Un proyecto de tienda online desarrollado como práctica final del curso de JavaScript.</p>
+    </section>
+  </main>
+
+  <footer><span>🌿 Almacén Las Acacias</span><span>Hecho con dedicación · 2026</span></footer>
+
+  <div id="velo" class="velo" aria-hidden="true"></div>
+  <aside id="carrito" class="panel-carrito" aria-label="Carrito de compras" aria-hidden="true">
+    <div class="carrito-cabecera"><div><span class="sobretitulo">TU PEDIDO</span><h2>Mi carrito</h2></div><button id="cerrar-carrito" class="boton-cerrar" type="button" aria-label="Cerrar carrito">×</button></div>
+    <div id="lista-carrito" class="lista-carrito"></div>
+    <div id="carrito-vacio" class="carrito-vacio"><span>🧺</span><strong>Tu carrito está vacío</strong><p>Agregá productos para comenzar tu pedido.</p></div>
+    <div class="carrito-pie">
+      <div class="linea-total"><span>Subtotal</span><strong id="total-carrito">$ 0</strong></div>
+      <div class="linea-total total-final"><span>Total estimado</span><strong id="total-checkout">$ 0</strong></div>
+      <button id="btn-finalizar" class="boton-principal boton-ancho" type="button">Finalizar compra →</button>
+      <button id="vaciar-carrito" class="boton-texto" type="button">Vaciar carrito</button>
+    </div>
+  </aside>
+
+  <section id="form-compra" class="modal-compra oculto" role="dialog" aria-modal="true" aria-labelledby="titulo-formulario">
+    <div class="modal-cabecera"><div><span class="sobretitulo">UN ÚLTIMO PASO</span><h2 id="titulo-formulario">Datos de tu compra</h2></div><button id="cerrar-formulario" class="boton-cerrar" type="button" aria-label="Cerrar formulario">×</button></div>
+    <form id="formulario-compra" novalidate>
+      <label>Nombre y apellido<input id="nombre" name="nombre" type="text" autocomplete="name" placeholder="Ej. Ana Pérez"><small id="error-nombre" class="error-campo"></small></label>
+      <label>Correo electrónico<input id="email" name="email" type="email" autocomplete="email" placeholder="ana@correo.com"><small id="error-email" class="error-campo"></small></label>
+      <label>Teléfono<input id="telefono" name="telefono" type="tel" inputmode="numeric" placeholder="3492123456"><small id="error-telefono" class="error-campo"></small></label>
+      <fieldset><legend>¿Cómo recibís tu pedido?</legend>
+        <label class="opcion"><input type="radio" name="entrega" value="Retiro en el local" checked> Retiro en el local</label>
+        <label class="opcion"><input type="radio" name="entrega" value="Envío a domicilio"> Envío a domicilio</label>
+      </fieldset>
+      <label id="grupo-direccion" class="oculto">Dirección de entrega<input id="direccion" name="direccion" type="text" placeholder="Calle y número"><small id="error-direccion" class="error-campo"></small></label>
+      <label class="opcion acepta"><input id="acepta" type="checkbox"> Confirmo que los datos ingresados son correctos.</label>
+      <small id="error-acepta" class="error-campo"></small>
+      <button class="boton-principal boton-ancho" type="submit">Confirmar pedido</button>
+    </form>
+  </section>
+
+  <div id="compra-exitosa" class="modal-exito oculto" role="status">
+    <span>✓</span><h2>¡Gracias por tu compra!</h2><p id="mensaje-exito"></p><button id="cerrar-exito" class="boton-principal" type="button">Volver a la tienda</button>
+  </div>
+
+  <div class="cotizacion"><span>💵</span><span id="cotizacion-dolar" class="cargando">Consultando dólar...</span></div>
+</body>
+</html>
